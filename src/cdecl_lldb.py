@@ -23,9 +23,9 @@ import lldb
 ###############################################################################
 
 def __lldb_init_module(debugger, internal_dict):
-    cmd_prefix = 'type summary add -F ' + __name__
-    debugger.HandleCommand(cmd_prefix + '.show_c_scope_t c_scope_t')
-    debugger.HandleCommand(cmd_prefix + '.show_c_sname_t c_sname_t')
+    cmd_prefix = f'type summary add -F {__name__}'
+    debugger.HandleCommand(f'{cmd_prefix}.show_c_scope_t c_scope_t')
+    debugger.HandleCommand(f'{cmd_prefix}.show_c_sname_t c_sname_t')
 
 
 def null(ptr):
@@ -46,7 +46,7 @@ def show_c_scope_t(c_scope, internal_dict):
         if not null(name_ptr):
             rv = name_ptr.GetSummary().strip('"')
 
-    return '"' + rv + '"'
+    return f'"{rv}"'
 
 
 def show_c_sname_t(c_sname, internal_dict):
@@ -69,7 +69,7 @@ def show_c_sname_t(c_sname, internal_dict):
                     colon2 = True
                 rv += name_ptr.GetSummary().strip('"')
 
-    return '"' + rv + '"'
+    return f'"{rv}"'
 
 
 ###############################################################################
